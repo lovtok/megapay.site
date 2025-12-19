@@ -1,0 +1,303 @@
+ 
+        /*:root {
+           
+            
+            --secondary: #3f37c9;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }*/
+        :root {   
+    --primary-light: #359b3a;
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --red: #dc3545;
+    --warning: #f8961e;
+    --ppmary: #4CAF50;
+    --primary-dark: #388E3C;
+    --danger: #f72585;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --info: #35b817;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #e2eefa;
+    --dark: #343a40;
+    --border-radius: 12px;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px; 
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";}
+ 
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(72, 149, 239, 0.05) 0%, transparent 20%);
+        }
+
+        .signup-container {
+            width: 100%;
+            max-width: 480px;
+            border: solid 1px var(--success);
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            margin: 20px;
+          animation: fadeIn 0.5s ease-in-out;
+        }
+ @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .signup-header {
+            padding: 32px;
+            background: linear-gradient(135deg, var(--success), var(--warning));
+            color: white;
+            text-align: center;
+        }
+
+        .signup-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .signup-header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .signup-body {
+            padding: 32px;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            border: 1px solid #e9ecef;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .social-btn-tty{
+            border: transparent;
+            background-color: white;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+        }
+
+        .social-btn-tty.google { color: #007bff; }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 24px 0;
+            color: #adb5bd;
+            font-size: 14px;
+        }
+         .terms input {
+            margin-right: 0.5rem;
+            accent-color: var(--info);
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e9ecef;
+            margin: 0 12px;
+        }
+        .under:hover{
+            text-decoration: underline;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .input-field {
+            position: relative;
+        }
+
+        .input-field input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #e9ecef;
+            border-radius: var(--border-radius);
+            font-size: 15px;
+            transition: var(--transition);
+            background-color: #ebebeb;
+        }
+
+        .input-field input:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+            outline: none;
+            background-color: white;
+        }
+
+        .input-field i {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #adb5bd;
+            font-size: 16px;
+        }
+
+        .password-strength {
+            height: 4px;
+            background-color: #e9ecef;
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .strength-meter {
+            height: 100%;
+            width: 0%;
+            background-color: var(--danger);
+            transition: var(--transition);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            margin: 24px 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+        .terms input {
+            margin-right: 12px;
+            margin-top: 3px;
+        }
+
+        .terms a {
+            color: var(--success);
+            text-decoration: none;
+            font-weight: 500;
+        }
+         .terms a:hover{
+            text-decoration: underline;
+         }
+
+        .signup-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--info), var(--info));
+            border: none;
+            border-radius: var(--border-radius);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .signup-button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, var(--primary-dark), var(--ppmary));
+            box-shadow: 0 6px 12px rgba(67, 97, 238, 0.2);
+        }
+
+        .signup-footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        .signup-footer a:hover{
+            text-decoration: underline;
+        }
+
+        .signup-footer a {
+            color: var(--success);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Password strength indicator colors */
+        .weak { background-color: var(--danger) !important; width: 30% !important; }
+        .medium { background-color: var(--warning) !important; width: 60% !important; }
+        .strong { background-color: var(--success) !important; width: 100% !important; }
+
+        /* Responsive adjustments */
+        @media (max-width: 576px) {
+            .signup-header, .signup-body {
+                padding: 24px;
+            }
+            
+            .social-login {
+                flex-direction: column;
+            }
+        }
+    

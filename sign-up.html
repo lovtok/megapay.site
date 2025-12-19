@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sign-up.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>megapay.site | Sign Up</title>
+    
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-header">
+            <h1>Create Account</h1>
+            <p>Join <a href="index.html" class="under"><b>MegaPay</b></a> community</p>
+        </div>
+        
+        <div class="signup-body">
+            <label for="Google" class="divider">Sign-up through Google Account</label>
+            <div class="social-login">
+                <a href="" class="google social-btn" >
+                    <button class="social-btn-tty google" id="Google">
+                      <i class="fab fa-google"></i>
+                     <h2>G<span style="color: rgb(253, 92, 92);">o</span><span style="color: orange;">o</span>g<span style="color:rgb(74, 163, 74) ;">l</span><span style="color:  rgb(253, 92, 92);">e</span></h2>
+                    </button>
+                </a>
+                
+            </div>
+            
+            <div class="divider">or sign up with email</div>
+            
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <div class="input-field">
+                        <input type="text" id="fullname" name="fullname" placeholder="Full name">
+                        <i class="fas fa-user input-icon"></i>
+                    </div>
+                    <div class="error-message" id="name-error">Please enter your full name</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-field">
+                        <input type="email" id="email" name="email" placeholder="your@email.com">
+                        <i class="fas fa-envelope input-icon"></i>
+                    </div>
+                    <div class="error-message" id="email-error">Please enter a valid email address</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-field">
+                        <input type="password" id="password" name="password" placeholder="••••••••">
+                        <i class="fas fa-lock input-icon"></i>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-meter" id="strength-meter"></div>
+                    </div>
+                    <div class="error-message" id="password-error">Password must be at least 6 characters</div>
+                </div>
+                
+                <div class="terms">
+                    <input type="checkbox" id="terms" name="terms">
+                    <label for="terms">I agree to the <a href="term.html">Terms of Us</a> and <a href="privacy.html">Privacy Policy</a></label>
+                </div>
+                <div class="error-message" id="terms-error">You must accept the terms and conditions</div>
+                <!--action-->
+                
+                <button type="submit"  class="signup-button">Create Account</button>
+            </form>
+            
+            <div class="signup-footer">
+                Already have an account? <a href="register.html">Sign in</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('signupForm');
+            const passwordInput = document.getElementById('password');
+            const strengthMeter = document.getElementById('strength-meter');
+            
+            // Password strength indicator
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                let strength = 0;
+                
+                // Check password length
+                if (password.length >= 6) strength += 1;
+                if (password.length >= 12) strength += 1;
+                
+                // Check for mixed case
+                if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1;
+                
+                // Check for numbers
+                if (password.match(/([0-9])/)) strength += 1;
+                
+                // Check for special chars
+                if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1;
+                
+                // Update strength meter
+                strengthMeter.className = 'strength-meter';
+                
+                if (password.length === 0) {
+                    strengthMeter.style.width = '0%';
+                } else if (strength <= 2) {
+                    strengthMeter.classList.add('weak');
+                } else if (strength === 3) {
+                    strengthMeter.classList.add('medium');
+                } else {
+                    strengthMeter.classList.add('strong');
+                }
+            });
+            
+            // Form validation
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const fullname = document.getElementById('fullname').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+                const terms = document.getElementById('terms').checked;
+                
+                // Reset error messages
+                document.querySelectorAll('.error-message').forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                // Validate form
+                let isValid = true;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                // Name validation
+                if (!fullname) {
+                    document.getElementById('name-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Email validation
+                if (!email) {
+                    document.getElementById('email-error').textContent = 'Email is required';
+                    document.getElementById('email-error').style.display = 'block';
+                    isValid = false;
+                } else if (!emailRegex.test(email)) {
+                    document.getElementById('email-error').textContent = 'Please enter a valid email address';
+                    document.getElementById('email-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Password validation
+                if (!password) {
+                    document.getElementById('password-error').textContent = 'Password is required';
+                    document.getElementById('password-error').style.display = 'block';
+                    isValid = false;
+                } else if (password.length < 6) {
+                    document.getElementById('password-error').textContent = 'Password must be at least 6 characters';
+                    document.getElementById('password-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Terms validation
+                if (!terms) {
+                    document.getElementById('terms-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // If form is valid, proceed with signup
+                if (isValid) {
+                    // Here you would typically send the data to a server
+                    console.log('Signup submitted:', { fullname, email, password, terms });
+                    
+                    // Show success message (in a real app, you would redirect or show a proper message)
+                    alert('Account created successfully !');
+                    
+                    // Reset form
+                    this.reset();
+                    strengthMeter.style.width = '0%';
+                }
+            });
+            
+            // Hide errors when user starts typing
+            document.getElementById('fullname').addEventListener('input', function() {
+                document.getElementById('name-error').style.display = 'none';
+            });
+            
+            document.getElementById('email').addEventListener('input', function() {
+                document.getElementById('email-error').style.display = 'none';
+            });
+            
+            document.getElementById('password').addEventListener('input', function() {
+                document.getElementById('password-error').style.display = 'none';
+            });
+            
+            document.getElementById('terms').addEventListener('change', function() {
+                document.getElementById('terms-error').style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

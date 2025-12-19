@@ -1,0 +1,80 @@
+:root {   --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --info: #35b817;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";}
+ 
+
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family-sans-serif);
+    color: var(--gray-dark);
+    background-color: var(--light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.link-gh4 {
+    color: blue;
+    
+    
+}
+.link-gh4:hover{
+   text-decoration: underline; 
+   color: #5c31a1;
+}
+.header-p21{
+    font-weight: 600;
+    color: black;
+    border: none;
+    border-radius: none;
+
+}
+.header-p21:hover{
+    padding-left: 15px;
+    padding-right: 15px;
+    border:  1px solid green;
+    border-radius: 30px;
+    color: var(--info);
+}
+.box-99 {
+    border: var(--success) 1px solid;
+    border-radius: 3px;
+    padding: 30px;
+    height: 100%;
+    transition: all 0.3s;
+}
+
+

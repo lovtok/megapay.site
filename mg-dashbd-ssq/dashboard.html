@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <meta name="description" content="Join MegaPay and start earning money today! Sign up now and earn up to ₦25,000 per day. Get a ₦12,000 sign-up bonus!">
+    <meta name="keywords" content="earn money online, market research, Megapay, referral program, online surveys, video earnings, NGN, PayPal, Bank Transfer, Mobile Money">
+    
+    <title>MegaPay - Modern Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <style>
+        /* --- Root Variables (From Your Code) --- */
+        :root {
+            --blue: #007bff;
+            --indigo: #6610f2;
+            --purple: #6f42c1;
+            --red: #dc3545;
+            --orange: #fd7e14;
+            --yellow: #ffc107;
+            --green: #28a745;
+            --cyan: #17a2b8;
+            --white: #fff;
+            --gray: #6c757d;
+            --gray-dark: #343a40;
+            --primary: #007bff;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --info: #35b817;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f4f7fc; /* Lighter background for modern feel */
+            --dark: #343a40;
+            --font-family-sans-serif: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+        }
+
+        /* --- Global Resets & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-sans-serif);
+            background-color: var(--light);
+            color: var(--gray-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+            font-size: 20px;
+        }
+
+        /* --- Main Dashboard Layout --- */
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 260px;
+            background-color: var(--white);
+            border-right: 1px solid #e0e0e0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+
+        .sidebar-logo {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .sidebar-logo img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .sidebar-nav {
+            flex-grow: 1;
+            padding-top: 1rem;
+        }
+
+        .sidebar-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            margin: 0.25rem 1rem;
+            border-radius: 8px;
+            color: var(--gray);
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .sidebar-nav-item:hover,
+        .sidebar-nav-item.active {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+
+        /* --- Main Content Area --- */
+        .main-content {
+            flex-grow: 1;
+            margin-left: 260px; /* Same as sidebar width */
+            padding: 1.5rem;
+        }
+
+        /* --- Main Header --- */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .main-header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .header-user {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .header-user .material-symbols-outlined {
+            font-size: 28px;
+            color: var(--gray);
+            cursor: pointer;
+        }
+
+        /* --- Card Base Style --- */
+        .card {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            height: 100%;
+        }
+        
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-dark);
+        }
+
+        /* --- Content Grid Layout --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* Grid Spanning */
+        .grid-col-span-4 { grid-column: span 4; }
+        .grid-col-span-6 { grid-column: span 6; }
+        .grid-col-span-8 { grid-column: span 8; }
+        .grid-col-span-12 { grid-column: span 12; }
+        .grid-row-span-2 { grid-row: span 2; }
+
+
+        /* --- Specific Card Styles --- */
+
+        /* Earnings Card */
+        .card-earnings .ccs-label {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .card-earnings .ccs-val {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0.5rem 0;
+        }
+
+        /* Level Progress */
+        .user-level-status {
+            margin-top: 1rem;
+        }
+        
+        .uls-bar {
+            background: #eee;
+            border-radius: 25px;
+            height: 10px;
+            width: 100%;
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        .uls-bar-i {
+            background: linear-gradient(90deg, var(--blue), var(--cyan));
+            border-radius: 25px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .uls-current, .uls-next {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+        }
+        
+        .uls-next {
+           float: right;
+        }
+
+        .uls-lvl-img {
+            color: var(--yellow);
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        .uls-n-award {
+            font-weight: 600;
+            color: var(--success);
+            margin-top: 1rem;
+        }
+
+        /* Level Up Activities */
+        .rl-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            color: var(--danger);
+        }
+        .rl-item .material-symbols-outlined {
+            font-size: 18px;
+        }
+        .rl-item.completed {
+            color: var(--success);
+        }
+        
+        /* Stats Cards (Clicks, Referrals, etc.) */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .card-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+        .card-stat:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+        }
+
+        .card-stat .ccs-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-stat .ccs-val {
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+
+        .card-stat .ccs-icon {
+            width: 32px;
+            height: 32px;
+            fill: var(--primary);
+            padding: 6px;
+            border-radius: 50%;
+            background: var(--light);
+        }
+
+        /* Referral Card */
+        .ref-link-card {
+            background: linear-gradient(135deg, var(--primary), var(--indigo));
+            color: var(--white);
+        }
+        .ref-link-card .card-title {
+            color: var(--white);
+        }
+        
+        .ref-link-input-wrapper {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+
+        .ref-input {
+            width: 100%;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 6px 0 0 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--dark);
+        }
+        .ref-input:focus {
+            outline: none;
+        }
+
+        .referral-action-copy-code {
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 6px 6px 0;
+            background: var(--warning);
+            color: var(--dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .referral-action-copy-code:hover {
+            background: #ffce3d;
+        }
+
+        .social-share-cta-button-wrapper {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .social-share-cta-button-wrapper img {
+            width: 36px;
+            height: 36px;
+            transition: transform 0.2s;
+        }
+        .social-share-cta-button-wrapper img:hover {
+            transform: scale(1.1);
+        }
+        
+        .ref-l-inp-i-row {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .share-amounts-wrapper {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .puhsc-val {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .puhsc-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Task List */
+        .task-list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .task-list-item:last-child {
+            border-bottom: none;
+        }
+        .task-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .task-icon {
+            padding: 10px;
+            border-radius: 50%;
+            background: var(--light);
+            color: var(--primary);
+        }
+        .task-list-item:nth-child(2) .task-icon {
+            color: var(--green);
+        }
+        .task-list-item:nth-child(3) .task-icon {
+            color: var(--orange);
+        }
+        .task-details h4 {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .task-details p {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        .task-reward {
+            font-weight: 600;
+            color: var(--success);
+            font-size: 1.1rem;
+        }
+
+        /* Leaderboard & Recent Earnings */
+        .top-earners-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .top-earners-row:last-child {
+            border-bottom: none;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .user-info .material-symbols-outlined {
+            font-size: 32px;
+            color: var(--gray);
+            background: var(--light);
+            border-radius: 50%;
+            padding: 4px;
+        }
+        .user-name {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .user-earnings {
+            font-weight: 600;
+            color: var(--success);
+        }
+        .recent-earnings .user-earnings {
+             color: var(--dark);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1200px) {
+            .content-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+            .grid-col-span-4 { grid-column: span 3; }
+            .grid-col-span-8 { grid-column: span 6; }
+        }
+
+        /*
+        ========================================
+        MOBILE STYLES (Your requested changes)
+        ========================================
+        */
+        @media (max-width: 992px) {
+            /* === NEW: Bottom Nav Bar === */
+            .sidebar {
+                transform: none; /* Override the old hide rule */
+                width: 100%;
+                height: 65px; /* Fixed height for bottom bar */
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                top: auto; /* Override top: 0 */
+                flex-direction: row; /* Make sidebar horizontal */
+                border-right: none;
+                border-top: 1px solid #e0e0e0;
+                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            }
+            
+            .sidebar-logo {
+                display: none; /* Hide logo on mobile */
+            }
+
+            .sidebar-nav {
+                display: flex;
+                flex-grow: 1; /* Take up all space in the sidebar */
+                justify-content: space-around;
+                align-items: center;
+                padding-top: 0;
+                height: 100%;
+            }
+
+            .sidebar-nav-item {
+                flex-direction: column; /* Stack icon and text */
+                gap: 2px;
+                padding: 8px 5px;
+                margin: 0;
+                font-size: 0.7rem; /* Smaller text */
+                font-weight: 500;
+                border-radius: 4px;
+                flex-basis: 0; /* Distribute space evenly */
+                flex-grow: 1;
+                text-align: center;
+            }
+
+            .sidebar-nav-item .material-symbols-outlined {
+                font-size: 22px; /* Icon size */
+            }
+            
+            .hide-on-mobile-nav {
+                display: none; /* Hide extra items on mobile */
+            }
+
+            /* === Main Content Adjustments === */
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding-bottom: 80px; /* Add space for the 65px bottom nav + breathing room */
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Reset all spans for mobile */
+            .grid-col-span-4,
+            .grid-col-span-6,
+            .grid-col-span-8,
+            .grid-col-span-12 {
+                grid-column: span 1;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .main-content {
+                padding: 1rem;
+                padding-bottom: 80px; /* Ensure padding remains */
+            }
+            .main-header {
+                padding: 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="https://via.placeholder.com/150x40?text=MegaPay" alt="MegaPay Logo">
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-nav-item active">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+                <a href="videos.html" class="sidebar-nav-item">
+                    <span class="material-symbols-outlined">smart_display</span>
+                    Videos
+                </a>
+                <a href="task.html" class="sidebar-nav-item">
+                    <span class="material-symbols-outlined">task_alt</span>
+                    Tasks
+                </a>
+                <a href="referrals.html" class="sidebar-nav-item">
+                    <span class="material-symbols-outlined">group</span>
+                    Referrals
+                </a>
+                <a href="withdraw.html" class="sidebar-nav-item">
+                    <span class="material-symbols-outlined">account_balance_wallet</span>
+                    Withdraw
+                </a>
+                <a href="account.html" class="sidebar-nav-item hide-on-mobile-nav">
+                    <span class="material-symbols-outlined">account_circle</span>
+                    My Account
+                </a>
+                <a href="logout.html" class="sidebar-nav-item hide-on-mobile-nav">
+                    <span class="material-symbols-outlined">logout</span>
+                    Logout
+                </a>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            
+            <header class="main-header">
+                <h1>Welcome Back!</h1>
+                <div class="header-user">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="material-symbols-outlined">account_circle</span>
+                </div>
+            </header>
+
+            <main class="content-grid">
+
+                <div class="card card-earnings grid-col-span-4">
+                    <div class="ccs-label">Total Earnings</div>
+                    <div class="ccs-val">₦12,000</div>
+                    
+                    <div class="user-level-status">
+                        <div class="uls-current">
+                            <span class="material-symbols-outlined uls-lvl-img">military_tech</span>
+                            Level <span class="clvv">5</span>
+                        </div>
+                        <div class="uls-bar">
+                            <div class="uls-bar-i" style="width: 40%;"></div> </div>
+                        <div class="uls-next">
+                            Level <span class="clvv">10</span>
+                            <span class="material-symbols-outlined uls-lvl-img">military_tech</span>
+                        </div>
+                        <div class="usl-n-award">Level 10 Bonus: ₦3,000</div>
+                    </div>
+                </div>
+
+                <div class="card grid-col-span-8">
+                    <h3 class="card-title">Your Statistics</h3>
+                    <div class="stats-grid">
+                        <a href="referrals.html" class="card-stat">
+                            <div>
+                                <div class="ccs-label">Clicks</div>
+                                <div class="ccs-val">0</div>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ccs-icon">
+                                <path d="M17.98,9.376,12,8.18V3.107A3.081,3.081,0,0,0,9.5.041,3,3,0,0,0,6,3V9.661L3.211,13.3a5.021,5.021,0,0,0,.249,6.794l2.4,2.425A5.036,5.036,0,0,0,9.414,24H17a5.006,5.006,0,0,0,5-5V14.279A5.013,5.013,0,0,0,17.98,9.376ZM20,19a3,3,0,0,1-3,3H9.414a3.022,3.022,0,0,1-2.134-.891l-2.4-2.428a3.03,3.03,0,0,1-.116-4.123L6,12.945V17a1,1,0,0,0,2,0V3a1,1,0,0,1,1.176-.985A1.082,1.082,0,0,1,10,3.107V9a1,1,0,0,0,.8.98l6.784,1.357A3.01,3.01,0,0,1,20,14.279Z"></path>
+                            </svg>
+                        </a>
+                        <a href="referrals.html" class="card-stat">
+                            <div>
+                                <div class="ccs-label">Referrals</div>
+                                <div class="ccs-val">0</div>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ccs-icon">
+                                <path d="M12,16a4,4,0,1,1,4-4A4,4,0,0,1,12,16Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,12,10Zm6,13A6,6,0,0,0,6,23a1,1,0,0,0,2,0,4,4,0,0,1,8,0,1,1,0,0,0,2,0ZM18,8a4,4,0,0,1,4-4A4,4,0,0,1,18,8Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,18,2Zm6,13a6.006,6.006,0,0,0-6-6,1,1,0,0,0,0,2,4,4,0,0,1,4,4,1,1,0,0,0,2,0ZM6,8a4,4,0,0,1,4-4A4,4,0,0,1,6,8ZM6,2A2,2,0,1,0,8,4,2,2,0,0,0,6,2ZM2,15a4,4,0,0,1,4-4A1,1,0,0,0,6,9C6.004,9.004,6,9.008,6,9a6.006,6.006,0,0,0-6,6,1,1,0,0,0,2,0Z"></path>
+                            </svg>
+                        </a>
+                        <a href="video.html" class="card-stat">
+                            <div>
+                                <div class="ccs-label">Videos Watched</div>
+                                <div class="ccs-val">0</div>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ccs-icon">
+                                <path d="M22.903,6.538c-.676-.338-1.473-.267-2.077,.188-.039,.029-.076,.062-.11,.096l-1.757,1.773c-.211-2.565-2.341-4.594-4.959-4.594H5C2.243,4,0,6.243,0,9v6c0,2.757,2.243,5,5,5H14c2.629,0,4.768-2.047,4.962-4.627l1.756,1.754c.034,.033,.069,.063,.107,.092,.352,.264,.768,.398,1.188,.398,.303,0,.606-.069,.89-.211,.677-.338,1.097-1.019,1.097-1.774v-7.318c0-.757-.42-1.437-1.097-1.775Zm-8.903,11.462H5c-1.654,0-3-1.346-3-3v-6c0-1.654,1.346-3,3-3H14c1.654,0,3,1.346,3,3v6c0,1.654-1.346,3-3,3Zm5-5.417v-1.189l3-3.028,.025,7.238-3.025-3.022Z"></path>
+                            </svg>
+                        </a>
+                        <a href="task.html" class="card-stat">
+                            <div>
+                                <div class="ccs-label">Tasks Completed</div>
+                                <div class="ccs-val">0</div>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ccs-icon">
+                               <path d="M19,1H5C2.243,1,0,3.243,0,6v12c0,2.757,2.243,5,5,5h14c2.757,0,5-2.243,5-5V6c0-2.757-2.243-5-5-5ZM5,3h14c1.654,0,3,1.346,3,3v2H2v-2c0-1.654,1.346-3,3-3Zm14,18H5c-1.654,0-3-1.346-3-3V10H22v8c0,1.654-1.346,3-3,3ZM3,5.5c0-.828,.672-1.5,1.5-1.5s1.5,.672,1.5,1.5-.672,1.5-1.5,1.5-1.5-.672-1.5-1.5Zm4,0c0-.828,.672-1.5,1.5-1.5s1.5,.672,1.5,1.5-.672,1.5-1.5,1.5-1.5-.672-1.5-1.5Zm3.707,10.579c.391,.391,.391,1.023,0,1.414l-1.982,1.982c-.352,.352-.809,.528-1.266,.528-.441,0-.883-.164-1.23-.493l-1.163-1.103c-.401-.379-.418-1.013-.038-1.413,.38-.401,1.013-.418,1.413-.038l1.015,.96,1.838-1.838c.391-.391,1.023-.391,1.414,0Zm8.293,1.921c0,.553-.447,1-1,1h-4c-.553,0-1-.447-1-1s.447-1,1-1h4c.553,0,1,.447,1,1Zm-8.293-6.921c.391,.391,.391,1.023,0,1.414l-1.982,1.982c-.352,.352-.809,.528-1.266,.528-.441,0-.883-.164-1.23-.493l-1.163-1.103c-.401-.379-.418-1.012-.038-1.413,.38-.402,1.013-.418,1.413-.039l1.015,.96,1.838-1.838c.391-.391,1.023-.391,1.414,0Zm8.293,1.921c0,.553-.447,1-1,1h-4c-.553,0-1-.447-1-1s.447-1,1-1h4c.553,0,1,.448,1,1Z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card grid-col-span-4 grid-row-span-2">
+                    <h3 class="card-title">Level Up Activities</h3>
+                    <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 1rem;">Complete these tasks to reach Level 10.</p>
+                    <div class="requirement-list">
+                        <div class="rl-item">
+                            <span class="material-symbols-outlined">close</span>
+                            <span class="rl-i-text">At least 7 clicks</span>
+                        </div>
+                        <div class="rl-item">
+                            <span class="material-symbols-outlined">close</span>
+                            <span class="rl-i-text">At least 5 referrals</span>
+                        </div>
+                        <div class="rl-item completed">
+                            <span class="material-symbols-outlined">check</span>
+                            <span class="rl-i-text">At least 8 videos watched</span>
+                        </div>
+                        <div class="rl-item">
+                            <span class="material-symbols-outlined">close</span>
+                            <span class="rl-i-text"> At least 3 tasks completed</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card ref-link-card grid-col-span-8">
+                    <h3 class="card-title">Invite & Earn!</h3>
+                    <div class="ref-link-input-wrapper">
+                        <input type="text" class="form-control ref-input" id="ref-link-input" readonly value="https://megapay.site/ref/your-username">
+                        <button class="referral-action-copy-code" id="copy-btn">Copy</button>
+                    </div>
+                    <div class="social-share-cta-button-wrapper">
+                        <a href="#"><img src="https://via.placeholder.com/40/25D366/FFFFFF?text=W" alt="WhatsApp"></a>
+                        <a href="#"><img src="https://via.placeholder.com/40/0088CC/FFFFFF?text=T" alt="Telegram"></a>
+                        <a href="#"><img src="https://via.placeholder.com/40/1877F2/FFFFFF?text=F" alt="Facebook"></a>
+                        <a href="#"><img src="https://via.placeholder.com/40/1DA1F2/FFFFFF?text=T" alt="Twitter"></a>
+                    </div>
+                    <div class="ref-l-inp-i-row">1. Share your referral link with friends and family</div>
+                    <div class="ref-l-inp-i-row">2. Receive ₦300 each time someone clicks your link</div>
+                    <div class="ref-l-inp-i-row">3. Earn ₦1,500 bonus when someone creates an account</div>
+                    <div class="ref-l-inp-i-row">4. Get 25% commission on all future earnings!</div>
+                    
+                    <div class="share-amounts-wrapper">
+                        <div>
+                            <div class="puhsc-val">₦300</div>
+                            <div class="puhsc-label">Per Click</div>
+                        </div>
+                        <div>
+                            <div class="puhsc-val">₦1,500</div>
+                            <div class="puhsc-label">Per Invite</div>
+                        </div>
+                        <div>
+                            <div class="puhsc-val">25%</div>
+                            <div class="puhsc-label">Comm</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card grid-col-span-6">
+                    <h3 class="card-title">Available Tasks</h3>
+                    <div class="task-list">
+                        <div class="task-list-item">
+                            <div class="task-info">
+                                <span class="material-symbols-outlined task-icon">smart_display</span>
+                                <div class="task-details">
+                                    <h4>Watch Tech Review Video</h4>
+                                    <p>Watch the full 5-minute video</p>
+                                </div>
+                            </div>
+                            <span class="task-reward">+₦500</span>
+                        </div>
+                        <div class="task-list-item">
+                            <div class="task-info">
+                                <span class="material-symbols-outlined task-icon">checklist</span>
+                                <div class="task-details">
+                                    <h4>Complete User Survey</h4>
+                                    <p>Answer 10 questions about your shopping habits</p>
+                                </div>
+                            </div>
+                            <span class="task-reward">+₦1,200</span>
+                        </div>
+                        <div class="task-list-item">
+                            <div class="task-info">
+                                <span class="material-symbols-outlined task-icon">download</span>
+                                <div class="task-details">
+                                    <h4>Install & Test App</h4>
+                                    <p>Download 'FinanceApp' and sign up</p>
+                                </div>
+                            </div>
+                            <span class="task-reward">+₦2,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card grid-col-span-6">
+                    <h3 class="card-title">Leaderboard</h3>
+                    <div class="top-earners-wrapper">
+                        <div class="top-earners-content">
+                            <div class="top-earners-row">
+                                <div class="user-info">
+                                    <span class="material-symbols-outlined">account_circle</span>
+                                    <span class="user-name">Salina</span>
+                                </div>
+                                <span class="user-earnings">₦37,310,072</span>
+                            </div>
+                            <div class="top-earners-row">
+                                <div class="user-info">
+                                    <span class="material-symbols-outlined">account_circle</span>
+                                    <span class="user-name">Rudi</span>
+                                </div>
+                                <span class="user-earnings">₦32,102,457</span>
+                            </div>
+                            <div class="top-earners-row">
+                                <div class="user-info">
+                                    <span class="material-symbols-outlined">account_circle</span>
+                                    <span class="user-name">Abby</span>
+                                </div>
+                                <span class="user-earnings">₦27,433,220</span>
+                            </div>
+                            <div class="top-earners-row">
+                                <div class="user-info">
+                                    <span class="material-symbols-outlined">account_circle</span>
+                                    <span class="user-name">Felixcity</span>
+                                </div>
+                                <span class="user-earnings">₦20,519,670</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card grid-col-span-12">
+                     <h3 class="card-title">Recent Earnings</h3>
+                     <div class="top-earners-wrapper recent-earnings">
+                         <div class="top-earners-content">
+                             <div class="top-earners-row">
+                                 <div class="user-info">
+                                    <span class="user-name">Sign-up bonus</span>
+                                 </div>
+                                 <span class="user-earnings">₦12,000</span>
+                             </div>
+                             </div>
+                     </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('copy-btn').addEventListener('click', function() {
+            // Select the input field
+            var copyInput = document.getElementById('ref-link-input');
+            
+            // Copy the text inside the input field
+            navigator.clipboard.writeText(copyInput.value).then(() => {
+                // Success feedback
+                var originalText = this.textContent;
+                this.textContent = 'Copied!';
+                this.style.background = 'var(--success)';
+                this.style.color = 'var(--white)';
+                
+                // Revert back after 2 seconds
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = 'var(--warning)';
+                    this.style.color = 'var(--dark)';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        });
+    </script>
+
+</body>
+</html>
